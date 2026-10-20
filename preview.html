@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>BOSS 岗位投递助手 2.2 · 本地预览</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6fa;color:#263147;font:14px/1.7 "Microsoft YaHei",sans-serif}header{padding:22px 4vw;background:white;border-bottom:1px solid #e1e6ef;display:flex;gap:24px;align-items:center}header b{color:#4568e8}header span{color:#8490a5;font-size:12px}main{padding:32px 4vw;width:calc(100% - 440px)}h1{margin:8px 0;font-size:28px;letter-spacing:-1px}p{color:#778299}a{color:#4568e8}ul.jobs{list-style:none;padding:0;display:grid;gap:12px}.job-card-box{border:1px solid #e1e6ef;background:white;border-radius:10px;padding:16px;cursor:pointer;display:grid;gap:6px}.job-card-box.selected{border-color:#4568e8;box-shadow:0 0 0 1px #4568e8}.job-name{font-weight:700;font-size:16px}.company-location,.tags,.company-name{font-size:12px;color:#7b879d}.salary{float:right;color:#4568e8;font-weight:700}.detail{padding:16px;background:white;border:1px solid #e1e6ef;border-radius:10px}.op-btn-chat,.fixture-button{display:inline-block;padding:8px 18px;background:#4568e8;color:white;border:0;border-radius:6px;text-decoration:none;cursor:pointer}.fixture-dialog{position:fixed;left:20%;top:35%;padding:30px;background:white;box-shadow:0 10px 60px #24365455;z-index:20}.fixture-dialog button{padding:8px 18px;cursor:pointer}#chat-input{min-height:80px;border:1px solid #ddd;padding:10px}.mock-chat{background:white;padding:20px}.chat-list li{cursor:pointer}.selected{color:#4568e8}.im-list{min-height:80px}.item-myself{text-align:right;list-style:none}button{cursor:pointer}@media(max-width:800px){main{width:100%;padding:20px}header span{display:none}}
+</style>
+<header><b>BOSS 岗位投递助手</b><span>LOCAL PREVIEW · 2.2.1 · 仅模拟数据</span></header>
+<main><small>更清楚地看到每一步</small><h1>筛选、预览，再开始。</h1><p>右侧为实际脚本。岗位与聊天均为本地模拟，不连接 BOSS，AI 接口由本地模拟回复替代。</p><p><a href="/web/geek/jobs">岗位预览</a> · <a href="/web/geek/chat">聊天预览</a></p><div id="fixture"></div></main>
+<script src="/fixture.js"></script>
+<script>
+window.__aiRequestCount = 0;
+window.GM_xmlhttpRequest = options => {
+    window.__aiRequestCount++;
+    const timer = setTimeout(() => options.onload({status:200,responseText:JSON.stringify({choices:[{message:{content:'本地模拟 AI 回复，仅用于界面检查。'}}]})}),100);
+    return {abort(){clearTimeout(timer)}};
+};
+const script=document.createElement('script');script.src='/boss-helper.user.js'+(new URLSearchParams(location.search).has('test')?'?test=1':'');document.body.append(script);
+</script>
+</html>

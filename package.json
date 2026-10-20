@@ -1,0 +1,15 @@
+{
+  "name": "boss-job-helper",
+  "version": "2.2.1",
+  "description": "BOSS 网页版岗位筛选与批量沟通用户脚本",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "author": "huazhou (https://github.com/huazhounb)",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "check": "node tools/check-release.cjs",
+    "preview": "node tools/preview-server.cjs",
+    "test:browser": "node tools/run-browser-checks.cjs"
+  },
+  "devDependencies": { "@playwright/cli": "0.1.22" }
+}
